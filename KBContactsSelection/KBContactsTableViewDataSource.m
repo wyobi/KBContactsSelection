@@ -262,8 +262,13 @@ static NSString *cellIdentifier = @"KBContactCell";
     NSMutableArray *result = [NSMutableArray array];
     
     [[self selectedContacts] enumerateObjectsUsingBlock:^(APContact *contact, NSUInteger idx, BOOL *stop) {
-        if (contact.phones && contact.phones.count > 0) {
+        if (contact.phones && contact.phones.count == 1) {
             [result addObject:((APPhone*)contact.phones[0]).number];
+        }
+        else if(contact.phones && contact.phones.count > 1) {
+            for(id obj in contact.phones) {
+                [result addObject:((APPhone*)obj).number];
+            }
         }
     }];
     
