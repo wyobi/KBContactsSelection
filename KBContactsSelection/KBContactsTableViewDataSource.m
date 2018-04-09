@@ -117,7 +117,21 @@ static NSString *cellIdentifier = @"KBContactCell";
     
     for (APContact *contact in contacts) {
         if (![self contactsArray:filteredContacts containsContact:contact]) {
-            [filteredContacts addObject:contact];
+            if(contact.phones.count > 0){
+                if(contact.phones.count > 1) {
+                    for(id obj in contact.phones) {
+                        APContact *newContact = [APContact new];
+                        NSArray *phones = @[obj];
+                        //newContact = contact;
+                        newContact.phones = phones;
+                        newContact.recordID = contact.recordID;
+                        newContact.name = contact.name;
+                        [filteredContacts addObject:newContact];
+                    }
+                } else {
+                    [filteredContacts addObject:contact];
+                }
+            }
         }
     }
     
