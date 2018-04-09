@@ -120,11 +120,15 @@ static NSString *cellIdentifier = @"KBContactCell";
             if(contact.phones.count > 0){
                 if(contact.phones.count > 1) {
                     for(id obj in contact.phones) {
+                        float low_bound = 20000;
+                        float high_bound = 30000;
+                        float rndValue = (((float)arc4random()/0x100000000)*(high_bound-low_bound)+low_bound);
+                        
                         APContact *newContact = [APContact new];
                         NSArray *phones = @[obj];
                         //newContact = contact;
                         newContact.phones = phones;
-                        newContact.recordID = contact.recordID;
+                        newContact.recordID = @(rndValue);
                         newContact.name = contact.name;
                         [filteredContacts addObject:newContact];
                     }
