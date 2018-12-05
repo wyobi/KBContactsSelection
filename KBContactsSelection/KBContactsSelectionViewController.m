@@ -50,6 +50,7 @@
 
 - (void)setAdditionalInfoView:(UIView *)additionalInfoView
 {
+    self.contactView = additionalInfoView;
     if (additionalInfoView != _additionalInfoView) {
         [_additionalInfoView removeFromSuperview];
     }
