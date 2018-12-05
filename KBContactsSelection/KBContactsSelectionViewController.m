@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) KBContactsTableViewDataSource *kBContactsTableViewDataSource;
 @property (nonatomic, strong) KBContactsSelectionConfiguration *configuration;
-@property IBOutlet UIView * additionalInfoContainer;
 @property IBOutlet NSLayoutConstraint * additionalInfoViewHeightConstraint;
 @end
 
@@ -34,13 +33,13 @@
     }
     
     vc.configuration = configuration;
-
+    
     return vc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self prepareContactsDataSource];
     [self prepareNavigationBar];
     [self customizeColors];
@@ -50,7 +49,6 @@
 
 - (void)setAdditionalInfoView:(UIView *)additionalInfoView
 {
-    self.contactView = additionalInfoView;
     if (additionalInfoView != _additionalInfoView) {
         [_additionalInfoView removeFromSuperview];
     }
@@ -62,7 +60,7 @@
 {
     if (self.additionalInfoView) {
         CGRect r = self.additionalInfoContainer.bounds;
-        r.size.height = self.additionalInfoView.frame.size.height;
+        r.size.height = self.additionalInfoContainer.frame.size.height;
         
         self.additionalInfoView.frame = r;
         self.additionalInfoView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
